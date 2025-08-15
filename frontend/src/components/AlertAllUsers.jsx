@@ -1,0 +1,25 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+
+export default function AlertAllUsers() {
+  const socket = useSelector((state) => state.socketClient.socket);
+
+  useEffect(() => {
+    if (!socket) return;
+
+    const handleBidAlert = (data) => {
+      console.log("all alert", data);
+      toast(`New bid placed for ${data.itemName} with amount ${data.bid}`);
+    };
+
+    socket.on("bid-alert-users", handleBidAlert);
+
+    // Cleanup to avoid duplicate listeners on re-render
+    return () => {
+      socket.off("bid-alert-users", handleBidAlert);
+    };
+  }, [socket]);
+
+  return <ToastContainer autoClose={1000} />;
+}

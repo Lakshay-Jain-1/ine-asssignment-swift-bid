@@ -4,6 +4,7 @@ export default function AuctionCard({data }) {
 
   return (
     <>
+    {console.log(data)}
     <div style={{
       border: "1px solid #ccc",
       borderRadius: "8px",
@@ -32,7 +33,7 @@ export default function AuctionCard({data }) {
       </p>
     </div>
 
-      <PlaceBid  itemName={data.itemName} email={data.email} name={data.name} />
+      <PlaceBid  itemName={data.itemName} sellerEmail={data.sellerEmail} sellerName={data.sellerName} />
     </>
   );
 }

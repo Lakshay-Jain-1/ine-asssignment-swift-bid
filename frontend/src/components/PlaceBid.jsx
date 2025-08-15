@@ -2,13 +2,17 @@ import { useState } from "react"
 import { useSelector } from "react-redux"
 import { supabase } from "../supabase-client"
 
-export default function PlaceBid({ itemName, email, name }) {
+export default function PlaceBid({ itemName, sellerEmail, sellerName }) {
     const [bidAmount, setBidAmount] = useState()
     const socket = useSelector((state) => state.socketClient.socket)
     async function sendAmount() {
-        const { data:userData,error } = supabase.auth.getUser()
-        socket.on("register-user",userData.user.email)
-        socket.emit("bid", { bid: bidAmount, itemName, email, "SellerName": name, "BuyerEmail": userData.user.email })
+        const { data, error } = await supabase.auth.getUser()
+        const email = data.user.email;
+
+        // Register user in userSocketMap
+        console.log("ema",email)
+        socket.emit("register-user", email);
+        socket.emit("bid", { bid: bidAmount, itemName, sellerEmail, sellerName, "buyerEmail": data.user.email })
     }
 
     return (

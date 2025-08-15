@@ -3,12 +3,11 @@ import { useSelector } from "react-redux"
 import { ToastContainer, toast } from 'react-toastify';
 export default function AlertHighestBidder(){
 
-    const [alertMessage,setAlertMessage] = useState("")
     const socket = useSelector((state)=>state.socketClient.socket)
     useEffect(()=>{
-            socket.on("bid-alert-highest-bidder",function (data){
-                    setAlertMessage(data)
-                    toast(alertMessage)
+        if(!socket) return
+            socket.on("bid-alert-highest-bidder",function ({auctionItemName}){
+                    toast(`You have been outbid for this item ${auctionItemName}`)
             })
     },[socket])
 

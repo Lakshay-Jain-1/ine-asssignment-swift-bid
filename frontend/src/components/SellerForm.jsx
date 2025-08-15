@@ -25,7 +25,9 @@ export default function SellerForm() {
         // first i willl autheticate from supabase client then send info to the backend else will notify them
         // embed seller's username and email also
         // doing hardcode right now
-        const updatedSeller = { ...seller, name: "Lakshay", email: "lakshaytheguy@gmail.com" };
+        const updatedSeller = { ...seller, sellerName: "Lakshay", sellerEmail: "jainlakshay502@gmail.com" };
+        let email = updatedSeller.sellerEmail
+        socket.emit("register-user",email)
         socket.emit("auction-card", updatedSeller);
 
     };
