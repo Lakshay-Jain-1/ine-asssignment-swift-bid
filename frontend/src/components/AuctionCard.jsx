@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import PlaceBid from "./PlaceBid";
 
 export default function AuctionCard({data }) {
@@ -33,7 +32,7 @@ export default function AuctionCard({data }) {
       </p>
     </div>
 
-      <PlaceBid  itemName={data.itemName} email={data.email} />
+      <PlaceBid  itemName={data.itemName} email={data.email} name={data.name} />
     </>
   );
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import AuctionCard from "../components/AuctionCard"
 import { supabase } from "../supabase-client"
+import AlertHighestBidder from "../components/AlertHighestBidder"
 
 
 export const Auction = () => {
@@ -36,6 +37,7 @@ export const Auction = () => {
                 ))
             }
 
+            <AlertHighestBidder/>
 
         </>
     )
