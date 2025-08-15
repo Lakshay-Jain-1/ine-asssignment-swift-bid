@@ -1,7 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit'
-import SocketReducer from "./features/webSocket.js"
+import { configureStore } from "@reduxjs/toolkit";
+import SocketReducer from "./features/webSocket.js";
 export const store = configureStore({
   reducer: {
-    socketClient:SocketReducer
+    socketClient: SocketReducer,
   },
-})
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false, // disables the warning
+    }),
+});

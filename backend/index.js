@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import { supabase } from "./supabase-client.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -26,9 +27,9 @@ const io = new Server(httpServer, {
 io.on("connection", (socket) => {
   console.log(`New client connected: ${socket.id}`);
 
-  socket.on("message", (data) => {
-    console.log("Message received:", data);
-    io.emit("message", data);
+  socket.on("auction-card", async (data) => {
+   const {error} =  await supabase.from("auction").insert(data)
+    io.emit("auction-cards", data);
   });
 
   socket.on("disconnect", () => {
