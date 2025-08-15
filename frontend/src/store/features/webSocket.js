@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { io } from "socket.io-client";
+import io  from "socket.io-client";
 
 const initialState = {
-  io: null,
+  socket: null,
 };
 
 const socketSlice = createSlice({
@@ -10,23 +10,24 @@ const socketSlice = createSlice({
   initialState,
   reducers: {
     setSocket: (state, action) => {
-      state.io = action.payload;
+      state.socket = action.payload;
     },
     disconnect: (state) => {
-      if (state.io) {
-        state.io.disconnect();
+      if (state.socket) {
+        state.socket.disconnect();
       }
-      state.io = null;
+      state.socket = null;
     },
   },
 });
 
 export const { setSocket, disconnect } = socketSlice.actions;
 
-// AsyncThunk for middleware
+// AsyncThunk middleware
 export const connectSocket = () => (dispatch, getState) => {
-  const { io } = getState().socket;
-  if (!io) {
+  const { socket } = getState().socketClient;
+  console.log("Connecting socket to:", import.meta.env.VITE_BACKEND_URL);
+  if (!socket) {
     const socket = io(import.meta.env.VITE_BACKEND_URL);
     dispatch(setSocket(socket));
   }
