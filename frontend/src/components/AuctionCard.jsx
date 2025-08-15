@@ -1,9 +1,9 @@
 import { useEffect,useState } from "react";
 import HighestBid from "./HighestBid";
 import PlaceBid from "./PlaceBid";
+import { auctionCard as styles } from "../stylesheets/styles.js";
 
 export default function AuctionCard({ data }) {
-  // --- Style Objects ---
 
   const [dateRelated,setDateRelated] = useState({
     date:"",
@@ -25,69 +25,12 @@ export default function AuctionCard({ data }) {
   },[])
 
 
-  const styles = {
-    card: {
-      fontFamily: 'Arial, sans-serif',
-      border: "1px solid #9DB2BF", // Updated color
-      borderRadius: "12px",
-      padding: "24px",
-      width: "350px",
-      minHeight: "460px",
-      backgroundColor: "#ffffff",
-      boxShadow: "0 4px 12px rgba(82, 109, 130, 0.15)", // Updated color
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '16px',
-    },
-    contentWrapper: {
-      flex: '1 1 auto',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '16px',
-    },
-    header: {
-      margin: 0,
-      fontSize: '1.5em',
-      color: '#27374D', // Updated color
-    },
-    description: {
-      margin: 0,
-      color: '#526D82', // Updated color
-      fontSize: '0.9em',
-      lineHeight: '1.4',
-      height: '4.2em',
-      overflow: 'hidden',
-      display: '-webkit-box',
-      WebkitBoxOrient: 'vertical',
-      WebkitLineClamp: 3,
-    },
-    detailsGrid: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: '12px',
-    },
-    detailItem: {
-      fontSize: '0.85em',
-      color: '#27374D', // Updated color
-    },
-    detailLabel: {
-      display: 'block',
-      color: '#526D82', // Updated color
-      marginBottom: '4px',
-    },
-    divider: {
-      border: 'none',
-      borderTop: '1px solid #DDE6ED', // Updated color
-      margin: '8px 0',
-    }
-  };
 
 
   return (
     <div style={styles.card}>
-      {/* This wrapper makes sure the bidding section is pushed to the bottom */}
+
       <div style={styles.contentWrapper}>
-        {/* --- Item Info Section --- */}
         <div>
           <h3 style={styles.header}>{data.itemName || "Auction Item"}</h3>
           <p style={styles.description}>
@@ -95,7 +38,6 @@ export default function AuctionCard({ data }) {
           </p>
         </div>
 
-        {/* --- Details Section --- */}
         <div style={styles.detailsGrid}>
           <div style={styles.detailItem}>
             <span style={styles.detailLabel}>Starting Price</span>
@@ -122,7 +64,6 @@ export default function AuctionCard({ data }) {
 
       <hr style={styles.divider} />
 
-      {/* --- Bidding Section --- */}
       <div>
         <HighestBid itemName={data.itemName} sellerEmail={data.sellerEmail} />
         <PlaceBid

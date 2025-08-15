@@ -4,39 +4,12 @@ import AuctionCard from "../components/AuctionCard";
 import { supabase } from "../supabase-client";
 import AlertHighestBidder from "../components/AlertHighestBidder";
 import AlertAllUsers from "../components/AlertAllUsers";
-
+import { auction as styles } from "../stylesheets/styles.js";
 export const Auction = () => {
     const socket = useSelector((state) => state.socketClient.socket);
     const [auctionData, setAuctionData] = useState([]);
-    const [loading, setLoading] = useState(true); // Added loading state
+    const [loading, setLoading] = useState(true);
 
-    // --- Style objects for cleaner JSX ---
-    const styles = {
-        pageContainer: {
-            padding: "24px",
-            backgroundColor: "#DDE6ED", // Updated color
-            minHeight: "100vh",
-        },
-        gridContainer: {
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
-            gap: "24px",
-            placeItems:"center" 
-        },
-        messageText: {
-            textAlign: 'center',
-            fontSize: '3em',
-            color: '#27374D',
-            backgroundColor: "#DDE6ED",
-            width:"100vw",
-            height:"100vh",
-            display:"flex",
-            justifyContent:"center",
-            alignItems:"center",
-            fontWeight:"900"
-        }
-    };
-    
     
     useEffect(() => {
         const fetchAuctionData = async () => {
@@ -45,7 +18,7 @@ export const Auction = () => {
             if (data) {
                 setAuctionData(data);
             }
-            setLoading(false); // Stop loading after data is fetched
+            setLoading(false);
         };
 
         fetchAuctionData();
@@ -55,10 +28,7 @@ export const Auction = () => {
         if (!socket) return;
         
         const handleNewAuction = (newCardData) => {
-            // Avoid adding duplicates if the card already exists
-            setAuctionData((prev) => 
-                prev.some(card => card.id === newCardData.id) ? prev : [...prev, newCardData]
-            );
+            setAuctionData((prev) => [...prev, newCardData]);
         };
 
         socket.on("auction-cards", handleNewAuction);

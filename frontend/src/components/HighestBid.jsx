@@ -1,36 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
+import { highestBid as styles } from "../stylesheets/styles.js";
 export default function HighestBid({ itemName, sellerEmail }) {
   const socket = useSelector((state) => state.socketClient.socket);
   const [highestBid, setHighestBid] = useState(null);
 
-  // --- Style Objects ---
-  const styles = {
-    container: {
-      marginBottom: '12px',
-      padding: '12px',
-      borderRadius: '8px',
-      backgroundColor: '#DDE6ED', // Updated color
-      textAlign: 'center',
-    },
-    text: {
-      margin: 0,
-      fontSize: '1em',
-      color: '#526D82', // Updated color
-    },
-    amount: {
-      fontWeight: 'bold',
-      marginLeft: '8px',
-      color: '#27374D', // Updated color
-    },
-    noBidText: {
-        margin: 0,
-        fontSize: '1em',
-        color: '#526D82', // Updated color
-        fontStyle: 'italic',
-    }
-  };
 
 
   useEffect(() => {
