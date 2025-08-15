@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 export default function SellerForm() {
 
     const socket = useSelector((state) => state.socketClient.socket)
-    const notify = () => toast('Wow so easy !');
+    const notify = () => toast('Not authenticated !');
     const [seller, setSeller] = useState({
         itemName: "",
         description: "",
@@ -19,15 +19,29 @@ export default function SellerForm() {
         setSeller((prev) => ({ ...prev, [name]: value }));
     };
 
+    const handleChangeDate = (e) => {
+        const { name, value } = e.target;
+        if (!value) return;
+        const [year, month, day] = value.split("-");
+        setSeller((prev) => ({
+            ...prev,
+            [`${name}Raw`]: value, // for binding the date picker
+            [name]: `${day}-${month}-${year}`
+        }));
+    };
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Seller Data:", seller);
         // first i willl autheticate from supabase client then send info to the backend else will notify them
         // embed seller's username and email also
         // doing hardcode right now
-        const updatedSeller = { ...seller, sellerName: "Lakshay", sellerEmail: "jainlakshay502@gmail.com" };
+        let date = new Date()
+        let nowTime = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
+        const updatedSeller = { ...seller, sellerName: "Lakshay", sellerEmail: "jainlakshay502@gmail.com", postDate: nowTime };
         let email = updatedSeller.sellerEmail
-        socket.emit("register-user",email)
+        socket.emit("register-user", email)
         socket.emit("auction-card", updatedSeller);
 
     };
@@ -83,8 +97,8 @@ export default function SellerForm() {
                     <input
                         type="date"
                         name="liveDate"
-                        value={seller.liveDate}
-                        onChange={handleChange}
+                        value={seller.liveDateRaw || ""}
+                        onChange={handleChangeDate}
                         required
                     />
                 </div>

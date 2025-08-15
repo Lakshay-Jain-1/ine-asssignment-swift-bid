@@ -98,6 +98,10 @@ io.on("connection", (socket) => {
           bid,
           itemName,
         });
+      
+        // updating higest bid
+      io.emit("item-price-alert",{itemName,sellerEmail,bid})
+
       }
     }
   );
