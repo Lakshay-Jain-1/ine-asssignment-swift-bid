@@ -214,4 +214,70 @@ const highestBid = {
   },
 };
 
-export { sellerForm, auctionCard, auction, placeBid, highestBid };
+const lander = {
+  pageContainer: {
+    display: "flex",
+    width: "100vw",
+    minHeight: "100vh",
+    fontFamily: "'Segoe UI', 'Roboto', 'Arial', sans-serif",
+    overflowX: "hidden",
+  },
+  // --- Right Side: Action Section ---
+  actionSection: {
+    width: "47%",
+    backgroundColor: "#ffffff",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "60px",
+    boxSizing: "border-box",
+  },
+  actionTitle: {
+    fontSize: "2em",
+    fontWeight: "bold",
+    color: "#27374D",
+    marginBottom: "40px",
+  },
+  roleContainer: {
+    display: "flex",
+    gap: "30px",
+    width: "100%",
+    justifyContent: "center",
+  },
+  roleCard: {
+    flex: 1,
+    maxWidth: "250px",
+    border: "2px solid #DDE6ED",
+    borderRadius: "12px",
+    padding: "30px",
+    textAlign: "center",
+    cursor: "pointer",
+    transition: "all 0.3s ease",
+  },
+  roleTitle: {
+    fontSize: "1.5em",
+    fontWeight: "bold",
+    color: "#27374D",
+    marginTop: "15px",
+  },
+  roleDescription: {
+    fontSize: "0.9em",
+    color: "#526D82",
+    marginTop: "10px",
+  },
+  signInContainer: {
+    marginTop: "50px",
+    textAlign: "center",
+    color: "#526D82",
+  },
+  signInLink: {
+    color: "#27374D",
+    fontWeight: "bold",
+    cursor: "pointer",
+    textDecoration: "underline",
+    marginLeft: "8px",
+  },
+};
+
+export { sellerForm, auctionCard, auction, placeBid, highestBid, lander };

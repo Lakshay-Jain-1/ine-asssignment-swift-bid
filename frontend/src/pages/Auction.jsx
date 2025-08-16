@@ -38,17 +38,17 @@ export const Auction = () => {
         };
     }, [socket]);
 
-    // --- Loading and Empty State Handling ---
     if (loading) {
         return <div style={styles.messageText}>Loading auctions... ⏳</div>;
     }
 
     return (
+        <>
+              
         <div style={styles.pageContainer}>
             {auctionData.length > 0 ? (
                 <div style={styles.gridContainer}>
                     {auctionData.map((ele) => (
-                        // The key prop must be on the outermost element in the map
                         <div key={ele.id || `${ele.itemName}-${ele.sellerEmail}`}>
                             <AuctionCard data={ele} />
                         </div>
@@ -58,9 +58,10 @@ export const Auction = () => {
                 <div style={styles.messageText}>No active auctions found. 😢</div>
             )}
 
-            {/* Alerts are kept here, assuming they are self-positioning (e.g., toasts) */}
+         
             <AlertHighestBidder />
             <AlertAllUsers />
         </div>
+        </>
     );
 };

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { supabase } from "../supabase-client";
-
 const SignIn = () => {
   const [userData, setUserData] = useState({});
 
@@ -35,5 +34,4 @@ const SignIn = () => {
     </form>
   );
 };
-
 export default SignIn;
