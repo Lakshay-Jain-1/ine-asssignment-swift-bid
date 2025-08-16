@@ -1,5 +1,5 @@
 # Stage 1: Build frontend
-FROM node:18 AS frontend-build
+FROM node:20 AS frontend-build
 
 WORKDIR /app/frontend
 
@@ -10,7 +10,7 @@ COPY frontend/ ./
 RUN npm run build
 
 # Stage 2: Setup backend and serve frontend
-FROM node:18
+FROM node:20
 
 WORKDIR /app
 
