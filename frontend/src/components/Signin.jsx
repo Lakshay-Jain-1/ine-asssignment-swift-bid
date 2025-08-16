@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { supabase } from "../supabase-client";
 import { useNavigate } from "react-router-dom";
-import HeroSection from "./HeroSection"; 
+import HeroSection from "./HeroSection";
 import { signin as styles } from "../stylesheets/styles.js";
 const SignIn = () => {
     const [userData, setUserData] = useState({ email: '', password: '' });
@@ -14,19 +14,22 @@ const SignIn = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { error } = await supabase.auth.signInWithPassword(userData);
+        const { data, error } = await supabase.auth.signInWithPassword(userData);
         if (error) {
             console.error(error);
-            // Add a toast notification for login errors
+            toast.error("Wrong Password, Make a new account, It is totally free !!")
         } else {
-            // Navigate to the main auction page on successful login
-            navigate('/auction');
+            if (data.user.user_metadata?.role == "seller") {
+                navigate("/seller")
+            } else {
+                navigate("/auction")
+            }
         }
     };
 
     return (
         <div style={styles.pageContainer}>
-                <HeroSection />
+            <HeroSection />
 
             <div style={styles.formSection}>
                 <div style={styles.formContainer}>
@@ -51,8 +54,8 @@ const SignIn = () => {
                             onChange={handleChange}
                             required
                         />
-                        <button 
-                            type="submit" 
+                        <button
+                            type="submit"
                             style={styles.button}
                         >
                             Sign In

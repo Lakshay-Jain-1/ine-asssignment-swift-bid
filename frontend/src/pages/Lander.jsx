@@ -9,8 +9,6 @@ export default function Lander() {
         navigate(path);
     }
 
-
-
     const handleMouseOver = (e) => {
         e.currentTarget.style.borderColor = '#526D82';
         e.currentTarget.style.transform = 'translateY(-1px)';
@@ -27,7 +25,7 @@ export default function Lander() {
         <div style={styles.pageContainer}>
             <HeroSection />
 
-            {/* --- Action Section (Right Side) --- */}
+            {/* ---  (Right Side) --- */}
             <div style={styles.actionSection}>
                 <h2 style={styles.actionTitle}>Choose Your Role</h2>
                 <div style={styles.roleContainer}>

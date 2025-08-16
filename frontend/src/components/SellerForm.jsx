@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { sellerForm as styles } from "../stylesheets/styles.js";
 import { toast } from 'react-toastify';
+import { supabase } from "../supabase-client.js";
 export default function SellerForm() {
 
     const socket = useSelector((state) => state.socketClient.socket);
-    const notify = () => toast('Not authenticated !');
     const [seller, setSeller] = useState({
         itemName: "",
         description: "",
@@ -26,25 +26,39 @@ export default function SellerForm() {
         const [year, month, day] = value.split("-");
         setSeller((prev) => ({
             ...prev,
-            [`${name}Raw`]: value, // for binding the date picker
+            [`${name}Raw`]: value,
             [name]: `${day}-${month}-${year}`
         }));
     };
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Seller Data:", seller);
-        // first i willl autheticate from supabase client then send info to the backend else will notify them
-        // embed seller's username and email also
-        // doing hardcode right now
-        let date = new Date();
+
+        // 1. Authenticate user from Supabase
+        const { data: { user }, error } = await supabase.auth.getUser();
+        if (error || !user) {
+            toast.error("Please login before auctioning an item");
+            return;
+        }
+
+        // 2. Embed seller’s actual username + email
+        const date = new Date();
         let nowTime = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
-        const updatedSeller = { ...seller, sellerName: "Lakshay", sellerEmail: "jainlakshay502@gmail.com", postDate: nowTime };
-        let email = updatedSeller.sellerEmail;
-        socket.emit("register-user", email);
+
+        const updatedSeller = {
+            ...seller,
+            sellerName: user.user_metadata?.full_name || user.email,
+            sellerEmail: user.email,
+            postDate: nowTime,
+        };
+
+        socket.emit("register-user", updatedSeller.sellerEmail);
         socket.emit("auction-card", updatedSeller);
-        toast(`Now this item ${seller.itemName} will get auctioned`)
+
+        toast(`Now this item ${seller.itemName} will get auctioned`);
     };
+
 
     return (
         <>
@@ -114,13 +128,14 @@ export default function SellerForm() {
                     </div>
 
                     <div style={styles.inputGroup}>
-                        <label style={styles.label}>Duration (in days):</label>
+                        <label style={styles.label}>Duration (in minutes):</label>
                         <input
                             style={styles.input}
                             type="number"
                             name="duration"
                             value={seller.duration}
                             onChange={handleChange}
+                            step="1"
                             required
                         />
                     </div>

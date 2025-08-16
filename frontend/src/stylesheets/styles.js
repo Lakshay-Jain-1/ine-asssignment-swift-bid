@@ -126,7 +126,6 @@ const auctionCard = {
     borderTop: "1px solid #DDE6ED",
     margin: "8px 0",
   },
-  // --- ADD THESE NEW STYLES ---
   notLiveContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -149,6 +148,7 @@ const auctionCard = {
     fontSize: '1em',
     color: '#526D82',
     fontWeight: 'bold',
+    textAlign:"center"
   },
 };
 
