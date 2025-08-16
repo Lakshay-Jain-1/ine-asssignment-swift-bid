@@ -7,3 +7,25 @@
     scrollbar-color: #9DB2BF #DDE6ED;
     
 }
+
+
+.swiftbid-toast {
+  background-color: #ffffff !important;
+  color: #27374D !important;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif !important;
+  border-radius: 12px !important; 
+  box-shadow: 0 4px 12px rgba(82, 109, 130, 0.15) !important; 
+  border: 1px solid #DDE6ED;
+}
+
+.swiftbid-toast-progress {
+  background: #526D82 !important; 
+}
+
+.swiftbid-toast-close-button {
+  color: #27374D !important;
+}
+
+.swiftbid-toast .Toastify__toast-icon > svg {
+  fill: #28a745 !important;
+}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { ToastContainer, toast } from 'react-toastify';
 import { sellerForm as styles } from "../stylesheets/styles.js";
+import { toast } from 'react-toastify';
 export default function SellerForm() {
 
     const socket = useSelector((state) => state.socketClient.socket);
@@ -126,8 +126,8 @@ export default function SellerForm() {
                     </div>
                 </div>
 
-                <button 
-                    type="submit" 
+                <button
+                    type="submit"
                     style={styles.button}
                     onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#526D82'}
                     onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#27374D'}
@@ -135,7 +135,6 @@ export default function SellerForm() {
                     Post Item
                 </button>
             </form>
-            <ToastContainer autoClose={1000} />
         </>
     );
 }

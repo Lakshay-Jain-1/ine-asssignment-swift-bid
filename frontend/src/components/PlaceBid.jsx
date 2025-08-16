@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { supabase } from "../supabase-client";
+import { toast } from 'react-toastify';
 import { placeBid as styles } from "../stylesheets/styles.js";
-import { ToastContainer, toast } from 'react-toastify';
+
 export default function PlaceBid({ itemName, sellerEmail, sellerName, bidIncrement, startingPrice }) {
   const [bidAmount, setBidAmount] = useState(startingPrice);
   const socket = useSelector((state) => state.socketClient.socket);
@@ -57,7 +58,6 @@ export default function PlaceBid({ itemName, sellerEmail, sellerName, bidIncreme
         Place Bid
       </button>
     </div>
-    <ToastContainer autoClose={1000} />
     </>
   );
 }

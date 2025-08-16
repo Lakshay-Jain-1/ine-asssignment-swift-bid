@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { ToastContainer, toast } from 'react-toastify';
-
+import { toast } from 'react-toastify';
 export default function AlertSeller() {
     const socket = useSelector((state) => state.socketClient.socket);
 
@@ -20,5 +19,5 @@ export default function AlertSeller() {
         };
     }, [socket]);
 
-    return <ToastContainer autoClose={1000} />;
+    return null;
 }

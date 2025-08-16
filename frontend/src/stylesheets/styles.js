@@ -137,6 +137,7 @@ const auctionCard = {
     borderRadius: '8px',
     padding: '20px',
     boxSizing: 'border-box',
+    margin:"15px"
   },
   notLiveIcon: {
     fontSize: '2.5em',

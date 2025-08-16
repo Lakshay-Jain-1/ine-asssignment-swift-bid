@@ -29,7 +29,12 @@ io.on("connection", (socket) => {
   console.log(`New client connected: ${socket.id}`);
 
   socket.on("auction-card", async (data) => {
+    console.log("auctionCardData",data)
+    delete data["liveDateRaw"]
     const { error } = await supabase.from("auction").insert(data);
+    if(error){
+      console.error(error)
+    }
     io.emit("auction-cards", data);
   });
 

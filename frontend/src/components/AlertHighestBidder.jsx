@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 export default function AlertHighestBidder(){
 
     const socket = useSelector((state)=>state.socketClient.socket)
@@ -13,9 +13,7 @@ export default function AlertHighestBidder(){
 
 
     return (
-        <>
-        <ToastContainer autoClose={1000} />
-        </>
+       null
     )
 
 
