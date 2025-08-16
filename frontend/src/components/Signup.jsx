@@ -4,115 +4,13 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 // Import icons for the logo and branding
 import { BsFillLightningChargeFill } from "react-icons/bs";
 import HeroSection from "./HeroSection";
-
+import { signup as styles } from "../stylesheets/styles.js";
 const SignUp = () => {
     const [userData, setUserData] = useState({ email: '', password: '' });
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const role = searchParams.get("role");
 
-    // --- Style Objects ---
-    const styles = {
-        pageContainer: {
-            display: 'flex',
-            width: '100vw',
-            minHeight: '100vh',
-            fontFamily: "'Segoe UI', 'Roboto', 'Arial', sans-serif",
-        },
-        // --- Hero Section (Consistent with Landing Page) ---
-        heroSection: {
-            width: '50%',
-            backgroundColor: '#27374D',
-            color: '#DDE6ED',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            padding: '60px',
-            boxSizing: 'border-box',
-        },
-        logo: {
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            fontSize: '2em',
-            fontWeight: 'bold',
-            marginBottom: '40px',
-        },
-        headline: {
-            fontSize: '3.5em',
-            fontWeight: 'bold',
-            lineHeight: '1.2',
-            marginBottom: '20px',
-        },
-        subheadline: {
-            fontSize: '1.2em',
-            color: '#9DB2BF',
-            lineHeight: '1.6',
-            maxWidth: '500px',
-        },
-        // --- Form Section ---
-        formSection: {
-            width: '50%',
-            backgroundColor: '#ffffff',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: '60px',
-            boxSizing: 'border-box',
-        },
-        formContainer: {
-            width: '100%',
-            maxWidth: '400px',
-            display: 'flex',
-            flexDirection: 'column',
-        },
-        title: {
-            fontSize: '2.5em',
-            fontWeight: 'bold',
-            color: '#27374D',
-            marginBottom: '10px',
-        },
-        subtitle: {
-            fontSize: '1em',
-            color: '#526D82',
-            marginBottom: '30px',
-        },
-        input: {
-            padding: '15px',
-            border: '1px solid #9DB2BF',
-            borderRadius: '8px',
-            fontSize: '1em',
-            color: '#27374D',
-            outline: 'none',
-            marginBottom: '20px',
-            boxSizing: 'border-box',
-            width: '100%',
-        },
-        button: {
-            padding: '15px 20px',
-            border: 'none',
-            borderRadius: '8px',
-            backgroundColor: '#27374D',
-            color: 'white',
-            fontSize: '1.1em',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            width: '100%',
-            transition: 'background-color 0.2s',
-        },
-        footerText: {
-            marginTop: '30px',
-            textAlign: 'center',
-            color: '#526D82',
-        },
-        link: {
-            color: '#27374D',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            textDecoration: 'underline',
-            marginLeft: '5px',
-        },
-    };
 
     function handleNavigation(path) {
         navigate(path);
@@ -171,8 +69,6 @@ const SignUp = () => {
                         <button 
                             type="submit" 
                             style={styles.button}
-                            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#526D82'}
-                            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#27374D'}
                         >
                             Sign Up
                         </button>

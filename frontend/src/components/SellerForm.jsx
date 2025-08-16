@@ -43,6 +43,7 @@ export default function SellerForm() {
         let email = updatedSeller.sellerEmail;
         socket.emit("register-user", email);
         socket.emit("auction-card", updatedSeller);
+        toast(`Now this item ${seller.itemName} will get auctioned`)
     };
 
     return (

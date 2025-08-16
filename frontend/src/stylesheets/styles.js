@@ -70,16 +70,17 @@ const sellerForm = {
   },
 };
 
+
 const auctionCard = {
   card: {
     fontFamily: "Arial, sans-serif",
-    border: "1px solid #9DB2BF", // Updated color
+    border: "1px solid #9DB2BF",
     borderRadius: "12px",
     padding: "24px",
     width: "350px",
     minHeight: "460px",
     backgroundColor: "#ffffff",
-    boxShadow: "0 4px 12px rgba(82, 109, 130, 0.15)", // Updated color
+    boxShadow: "0 4px 12px rgba(82, 109, 130, 0.15)",
     display: "flex",
     flexDirection: "column",
     gap: "16px",
@@ -93,11 +94,11 @@ const auctionCard = {
   header: {
     margin: 0,
     fontSize: "1.5em",
-    color: "#27374D", // Updated color
+    color: "#27374D",
   },
   description: {
     margin: 0,
-    color: "#526D82", // Updated color
+    color: "#526D82",
     fontSize: "0.9em",
     lineHeight: "1.4",
     height: "4.2em",
@@ -113,17 +114,40 @@ const auctionCard = {
   },
   detailItem: {
     fontSize: "0.85em",
-    color: "#27374D", // Updated color
+    color: "#27374D",
   },
   detailLabel: {
     display: "block",
-    color: "#526D82", // Updated color
+    color: "#526D82",
     marginBottom: "4px",
   },
   divider: {
     border: "none",
-    borderTop: "1px solid #DDE6ED", // Updated color
+    borderTop: "1px solid #DDE6ED",
     margin: "8px 0",
+  },
+  // --- ADD THESE NEW STYLES ---
+  notLiveContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    backgroundColor: '#f9fafb',
+    borderRadius: '8px',
+    padding: '20px',
+    boxSizing: 'border-box',
+  },
+  notLiveIcon: {
+    fontSize: '2.5em',
+    color: '#9DB2BF',
+    marginBottom: '10px',
+  },
+  notLiveText: {
+    margin: 0,
+    fontSize: '1em',
+    color: '#526D82',
+    fontWeight: 'bold',
   },
 };
 
@@ -154,13 +178,6 @@ const auction = {
 };
 
 const placeBid = {
-  container: {
-    display: "flex",
-    gap: "8px",
-    flexDirection: "column",
-    position: "relative",
-    marginBottom: "30px",
-  },
   input: {
     flex: 1,
     padding: "10px 12px",
@@ -170,21 +187,27 @@ const placeBid = {
     outline: "none",
     color: "#27374D", // Updated theme color
   },
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "30px",
+    marginBottom: "0px",
+    justifyContent: "space-between", // space between input and button vertically
+  },
   button: {
     padding: "10px 20px",
     border: "none",
     borderRadius: "12px",
-    backgroundColor: "#27374D", // Updated theme color
+    backgroundColor: "#27374D",
     color: "white",
     fontSize: "1em",
     fontWeight: "bold",
     cursor: "pointer",
     width: "160px",
     height: "40px",
-    position: "absolute",
-    bottom: "-65px",
-    left: "75px",
-    transition: "background-color 0.2s", // Smooth transition for hover
+    alignSelf: "center", // centers horizontally
+    transition: "background-color 0.2s",
+    overflowY: "hidden",
   },
 };
 
@@ -280,4 +303,154 @@ const lander = {
   },
 };
 
-export { sellerForm, auctionCard, auction, placeBid, highestBid, lander };
+const signin = {
+  pageContainer: {
+    display: "flex",
+    width: "100vw",
+    minHeight: "100vh",
+    fontFamily: "'Segoe UI', 'Roboto', 'Arial', sans-serif",
+  },
+  // --- Form Section ---
+  formSection: {
+    width: "50%",
+    backgroundColor: "#ffffff",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "60px",
+    boxSizing: "border-box",
+  },
+  formContainer: {
+    width: "100%",
+    maxWidth: "400px",
+    display: "flex",
+    flexDirection: "column",
+  },
+  title: {
+    fontSize: "2.5em",
+    fontWeight: "bold",
+    color: "#27374D",
+    marginBottom: "10px",
+  },
+  subtitle: {
+    fontSize: "1em",
+    color: "#526D82",
+    marginBottom: "30px",
+  },
+  input: {
+    padding: "15px",
+    border: "1px solid #9DB2BF",
+    borderRadius: "8px",
+    fontSize: "1em",
+    color: "#27374D",
+    outline: "none",
+    marginBottom: "20px",
+    boxSizing: "border-box",
+    width: "100%",
+  },
+  button: {
+    padding: "15px 20px",
+    border: "none",
+    borderRadius: "8px",
+    backgroundColor: "#27374D",
+    color: "white",
+    fontSize: "1.1em",
+    fontWeight: "bold",
+    cursor: "pointer",
+    width: "100%",
+    transition: "background-color 0.2s",
+  },
+  footerText: {
+    marginTop: "30px",
+    textAlign: "center",
+    color: "#526D82",
+  },
+  link: {
+    color: "#27374D",
+    fontWeight: "bold",
+    cursor: "pointer",
+    textDecoration: "underline",
+    marginLeft: "5px",
+  },
+};
+
+const signup = {
+  pageContainer: {
+    display: "flex",
+    width: "100vw",
+    minHeight: "100vh",
+    fontFamily: "'Segoe UI', 'Roboto', 'Arial', sans-serif",
+  },
+  formSection: {
+    width: "50%",
+    backgroundColor: "#ffffff",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "60px",
+    boxSizing: "border-box",
+  },
+  formContainer: {
+    width: "100%",
+    maxWidth: "400px",
+    display: "flex",
+    flexDirection: "column",
+  },
+  title: {
+    fontSize: "2.5em",
+    fontWeight: "bold",
+    color: "#27374D",
+    marginBottom: "10px",
+  },
+  subtitle: {
+    fontSize: "1em",
+    color: "#526D82",
+    marginBottom: "30px",
+  },
+  input: {
+    padding: "15px",
+    border: "1px solid #9DB2BF",
+    borderRadius: "8px",
+    fontSize: "1em",
+    color: "#27374D",
+    outline: "none",
+    marginBottom: "20px",
+    boxSizing: "border-box",
+    width: "100%",
+  },
+  button: {
+    padding: "15px 20px",
+    border: "none",
+    borderRadius: "8px",
+    backgroundColor: "#27374D",
+    color: "white",
+    fontSize: "1.1em",
+    fontWeight: "bold",
+    cursor: "pointer",
+    width: "100%",
+    transition: "background-color 0.2s",
+  },
+  footerText: {
+    marginTop: "30px",
+    textAlign: "center",
+    color: "#526D82",
+  },
+  link: {
+    color: "#27374D",
+    fontWeight: "bold",
+    cursor: "pointer",
+    textDecoration: "underline",
+    marginLeft: "5px",
+  },
+};
+
+export {
+  sellerForm,
+  auctionCard,
+  auction,
+  placeBid,
+  highestBid,
+  lander,
+  signin,
+  signup,
+};
