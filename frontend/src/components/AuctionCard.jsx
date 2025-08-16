@@ -10,56 +10,75 @@ export default function AuctionCard({ data }) {
     countdown: "",
     status: "loading" // "loading", "upcoming", "live", "ended"
   });
+  const [auctionProcessed, setAuctionProcessed] = useState(false);
 
-  const socket = useSelector((state)=>state.socketClient.socket)
+  const socket = useSelector((state) => state.socketClient.socket)
 
   useEffect(() => {
+    let auctionEndDate = null;
+    let auctionEndEmitted = false;
+    let interval;
+
     const updateCountdown = () => {
-      // Parse DD-MM-YYYY into proper Date
+      if (dateRelated.status === "ended" && dateRelated.countdown=="Auction ended") {
+        return;
+      }
       const [day, month, year] = data.liveDate.split("-");
-      const liveDate = new Date(`${year}-${month}-${day}`);
+      const liveDate = new Date(year, month - 1, day);
       const now = new Date();
 
-      if (liveDate > now) {
-        // Auction hasn't started yet
-        const diffMs = liveDate - now;
-        const minutes = Math.floor(diffMs / (1000 * 60));
-        const seconds = Math.floor((diffMs / 1000) % 60);
+      const sameDay =
+        liveDate.getDate() === now.getDate() &&
+        liveDate.getMonth() === now.getMonth() &&
+        liveDate.getFullYear() === now.getFullYear();
 
-        setDateRelated({
-          countdown: `${minutes}m ${seconds}s`,
-          status: "upcoming"
-        });
-      } else {
-        // Auction started → add duration in minutes
-        const endDate = new Date(liveDate.getTime() + data.duration * 60 * 1000);
-        const remainingMs = endDate - now;
+      if (sameDay) {
+        if (!auctionEndDate) {
+          auctionEndDate = new Date(now.getTime() + data.duration * 60 * 1000);
+        }
+
+        const remainingMs = auctionEndDate - now;
 
         if (remainingMs > 0) {
           const minutes = Math.floor(remainingMs / (1000 * 60));
           const seconds = Math.floor((remainingMs / 1000) % 60);
-
-          setDateRelated({
-            countdown: `${minutes}m ${seconds}s`,
-            status: "live"
-          });
+          setDateRelated({ countdown: `${minutes}m ${seconds}s`, status: "live" });
         } else {
-          // Auction ended
-          setDateRelated({
-            countdown: "Auction ended",
-            status: "ended"
-          });
-          socket.emit("auction-end",{itemName:data.itemName,sellerEmail:data.sellerEmail})
-          
+          setDateRelated({ countdown: "Auction ended", status: "ended" });
+
+          if (!auctionProcessed) {
+            console.log("Auction ended, emitting auction-end for:", data.itemName);
+            setAuctionProcessed(true)
+            socket.emit("auction-end", {
+              itemName: data.itemName,
+              sellerEmail: data.sellerEmail,
+            });
+
+            // Clear the interval since auction has ended
+            if (interval) {
+              clearInterval(interval);
+            }
+          }
         }
+      } else if (liveDate > now) {
+        const diffMs = liveDate - now;
+        const minutes = Math.floor(diffMs / (1000 * 60));
+        const seconds = Math.floor((diffMs / 1000) % 60);
+        setDateRelated({ countdown: `${minutes}m ${seconds}s`, status: "upcoming" });
+      } else {
+        setDateRelated({ countdown: "Auction ended", status: "ended" });
       }
     };
 
-    updateCountdown(); // run immediately
-    const interval = setInterval(updateCountdown, 1000); // update every second
+    updateCountdown();
+    interval = setInterval(updateCountdown, 1000);
 
-    return () => clearInterval(interval); // cleanup
-  }, [data.liveDate, data.duration]);
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [data.liveDate, data.duration, data.itemName, data.sellerEmail]);
 
   return (
     <div style={styles.card}>
@@ -137,7 +156,7 @@ export default function AuctionCard({ data }) {
             return (
               <div style={styles.notLiveContainer}>
                 <p style={styles.notLiveText}>
-                  This auction has ended. The results have been announced,<br/> <br/>Please check your email if you placed a bid on this item.
+                  This auction has ended. The results have been announced,<br /> <br />Please check your email if you placed a bid on this item.
                 </p>
               </div>
             );
