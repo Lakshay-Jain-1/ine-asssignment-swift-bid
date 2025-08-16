@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { resolveTripleslashReference } from "typescript";
 
 const initialState = {
   highestBid: [],
