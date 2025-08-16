@@ -1,6 +1,14 @@
 # Stage 1: Build frontend
 FROM node:20 AS frontend-build
 
+# These lines accept the variables from Render's build environment
+ARG VITE_SUPABASEURL
+ARG VITE_SUPABASE_PASSWORD
+ARG VITE_BACKEND_URL
+ENV VITE_SUPABASEURL=$VITE_SUPABASEURL
+ENV VITE_SUPABASE_PASSWORD=$VITE_SUPABASE_PASSWORD
+ENV VITE_BACKEND_URL=$VITE_BACKEND_URL
+
 WORKDIR /app/frontend
 
 COPY frontend/package*.json ./
