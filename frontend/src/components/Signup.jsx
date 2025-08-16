@@ -44,7 +44,7 @@ const SignUp = () => {
 
     // After successful signup, use the stored role to decide navigation
     const signedUpRole = data.user?.user_metadata?.role;
-    handleNavigation(signedUpRole === "buyer" ? "/auction" : "/seller");
+    toast("Check your mail!! We have sent out a mail")
   };
 
   return (
