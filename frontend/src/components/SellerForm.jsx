@@ -48,7 +48,6 @@ export default function SellerForm() {
 
         const updatedSeller = {
             ...seller,
-            sellerName: user.user_metadata?.full_name || user.email,
             sellerEmail: user.email,
             postDate: nowTime,
         };

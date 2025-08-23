@@ -139,7 +139,6 @@ export default function AuctionCard({ data }) {
                 <PlaceBid
                   itemName={data.itemName}
                   sellerEmail={data.sellerEmail}
-                  sellerName={data.sellerName}
                   bidIncrement={data.bidIncrement}
                   startingPrice={data.desiredStartingPrice}
                 />

@@ -4,7 +4,7 @@ import { supabase } from "../supabase-client";
 import { toast } from 'react-toastify';
 import { placeBid as styles } from "../stylesheets/styles.js";
 
-export default function PlaceBid({ itemName, sellerEmail, sellerName, bidIncrement, startingPrice }) {
+export default function PlaceBid({ itemName, sellerEmail, bidIncrement, startingPrice }) {
   const [bidAmount, setBidAmount] = useState(startingPrice);
   const socket = useSelector((state) => state.socketClient.socket);
   let highestBidList = useSelector((state) => state.highestBid.highestBid);
@@ -26,7 +26,6 @@ export default function PlaceBid({ itemName, sellerEmail, sellerName, bidIncreme
       bid: bidAmount,
       itemName,
       sellerEmail,
-      sellerName,
       buyerEmail: email,
     });
     setBidAmount(Number(bidAmount) + Number(bidIncrement));

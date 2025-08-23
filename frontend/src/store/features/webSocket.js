@@ -23,7 +23,7 @@ const socketSlice = createSlice({
 
 export const { setSocket, disconnect } = socketSlice.actions;
 
-// AsyncThunk middleware
+// AsyncThunk
 export const connectSocket = () => (dispatch, getState) => {
   const { socket } = getState().socketClient;
   console.log("Connecting socket to:", import.meta.env.VITE_BACKEND_URL);

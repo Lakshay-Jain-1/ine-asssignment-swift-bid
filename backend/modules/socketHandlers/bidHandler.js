@@ -1,6 +1,6 @@
 
 export async function handleBid(socket, io, supabase, userSocketMap, bidData) {
-  const { bid, itemName, sellerEmail, sellerName, buyerEmail } = bidData;
+  const { bid, itemName, sellerEmail, buyerEmail } = bidData;
 
   try {
     const { data: allBids, error: fetchError } = await supabase
@@ -28,12 +28,10 @@ export async function handleBid(socket, io, supabase, userSocketMap, bidData) {
       .eq("buyerEmail", buyerEmail)
       .single();
 
-    if (existingBidError && existingBidError.code !== "PGRST116") return console.error(existingBidError);
-
     if (existingBid) {
       await supabase.from("bid").update({ bid }).eq("itemName", itemName).eq("buyerEmail", buyerEmail);
     } else {
-      await supabase.from("bid").insert({ bid, itemName, sellerEmail, sellerName, buyerEmail });
+      await supabase.from("bid").insert({ bid, itemName, sellerEmail, buyerEmail });
     }
 
     if (previousHighestBidderEmail && previousHighestBidderEmail !== buyerEmail && userSocketMap.has(previousHighestBidderEmail)) {
