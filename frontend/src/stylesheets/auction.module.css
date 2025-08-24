@@ -1,0 +1,25 @@
+.pageContainer {
+  padding: 24px;
+  background-color: #DDE6ED;
+  min-height: 100vh;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+  place-items: center;
+}
+
+.messageText {
+  text-align: center;
+  font-size: 3em;
+  color: #27374D;
+  background-color: #DDE6ED;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+}

@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { FaGavel, FaStore } from "react-icons/fa";
-import { lander as styles } from "../stylesheets/styles.js";
+import styles from "../stylesheets/lander.module.css";
 import HeroSection from "../components/HeroSection.jsx";
+
 export default function Lander() {
     const navigate = useNavigate();
 
@@ -22,38 +23,37 @@ export default function Lander() {
 
 
     return (
-        <div style={styles.pageContainer}>
+        <div className={styles.pageContainer}>
             <HeroSection />
 
-            {/* ---  (Right Side) --- */}
-            <div style={styles.actionSection}>
-                <h2 style={styles.actionTitle}>Choose Your Role</h2>
-                <div style={styles.roleContainer}>
+            <div className={styles.actionSection}>
+                <h2 className={styles.actionTitle}>Choose Your Role</h2>
+                <div className={styles.roleContainer}>
                     <div
-                        style={styles.roleCard}
+                        className={styles.roleCard}
                         onClick={() => handleNavigation(`signUp/?role=seller`)}
                         onMouseOver={handleMouseOver}
                         onMouseOut={handleMouseOut}
                     >
                         <FaStore size={48} color="#27374D" />
-                        <h3 style={styles.roleTitle}>Seller</h3>
-                        <p style={styles.roleDescription}>List your items and reach thousands of interested buyers.</p>
+                        <h3 className={styles.roleTitle}>Seller</h3>
+                        <p className={styles.roleDescription}>List your items and reach thousands of interested buyers.</p>
                     </div>
 
                     <div
-                        style={styles.roleCard}
+                        className={styles.roleCard}
                         onClick={() => handleNavigation(`signUp/?role=buyer`)}
                         onMouseOver={handleMouseOver}
                         onMouseOut={handleMouseOut}
                     >
                         <FaGavel size={48} color="#27374D" />
-                        <h3 style={styles.roleTitle}>Buyer</h3>
-                        <p style={styles.roleDescription}>Discover unique items and place your winning bid with confidence.</p>
+                        <h3 className={styles.roleTitle}>Buyer</h3>
+                        <p className={styles.roleDescription}>Discover unique items and place your winning bid with confidence.</p>
                     </div>
                 </div>
-                <div style={styles.signInContainer}>
+                <div className={styles.signInContainer}>
                     <span>Already a user?</span>
-                    <span onClick={() => handleNavigation(`signIn`)} style={styles.signInLink}>
+                    <span onClick={() => handleNavigation(`signIn`)} className={styles.signInLink}>
                         Sign In
                     </span>
                 </div>

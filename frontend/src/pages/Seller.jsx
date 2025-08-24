@@ -4,22 +4,11 @@ import SellerForm from "../components/SellerForm";
 import { supabase } from "../supabase-client";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import styles from "../stylesheets/seller.module.css";
 
 export const Seller = () => {
     const navigate = useNavigate();
-    const styles = {
-        pageContainer: {
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: '#DDE6ED',
-            width: '100vw',
-            minHeight: '100vh',
-            padding: '24px',
-            boxSizing: 'border-box',
-        }
-    };
+
 
     async function fetchUserData() {
         const { data, error } = await supabase.auth.getUser();
@@ -50,7 +39,7 @@ export const Seller = () => {
     }, [])
 
     return (
-        <div style={styles.pageContainer}>
+        <div className={styles.pageContainer}>
             <SellerForm />
             <AlertSeller />
         </div>

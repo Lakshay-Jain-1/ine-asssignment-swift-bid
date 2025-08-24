@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { supabase } from "../supabase-client";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import HeroSection from "./HeroSection";
-import { signup as styles } from "../stylesheets/styles.js";
+import styles from "../stylesheets/signup.module.css";
 import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [userData, setUserData] = useState({ email: "", password: "", role: "" });
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const role = searchParams.get("role"); // role passed via query param
+  const role = searchParams.get("role"); 
 
   useEffect(() => {
     setUserData((prev) => ({ ...prev, role }));
@@ -27,7 +27,6 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Sign up user and store role in user_metadata
     const { data, error } = await supabase.auth.signUp({
       email: userData.email,
       password: userData.password,
@@ -42,28 +41,26 @@ const SignUp = () => {
       return;
     }
 
-    // After successful signup, use the stored role to decide navigation
-    const signedUpRole = data.user?.user_metadata?.role;
     toast("Check your mail!! We have sent out a mail")
   };
 
   return (
-    <div style={styles.pageContainer}>
+    <div className={styles.pageContainer}>
       <HeroSection />
 
-      <div style={styles.formSection}>
-        <div style={styles.formContainer}>
-          <h2 style={styles.title}>
+      <div className={styles.formSection}>
+        <div className={styles.formContainer}>
+          <h2 className={styles.title}>
             Create a {role === "buyer" ? "Buyer" : "Seller"} Account
           </h2>
-          <p style={styles.subtitle}>
+          <p className={styles.subtitle}>
             {role === "buyer"
               ? "Get ready to discover and bid on unique items."
               : "Start selling and reach thousands of potential buyers today."}
           </p>
           <form onSubmit={handleSubmit}>
             <input
-              style={styles.input}
+              className={styles.input}
               name="email"
               type="email"
               placeholder="Email"
@@ -71,20 +68,20 @@ const SignUp = () => {
               required
             />
             <input
-              style={styles.input}
+              className={styles.input}
               name="password"
               type="password"
               placeholder="Password"
               onChange={handleChange}
               required
             />
-            <button type="submit" style={styles.button}>
+            <button type="submit" className={styles.button}>
               Sign Up
             </button>
           </form>
-          <p style={styles.footerText}>
+          <p className={styles.footerText}>
             Already have an account?
-            <span onClick={() => handleNavigation("/signIn")} style={styles.link}>
+            <span onClick={() => handleNavigation("/signIn")} className={styles.link}>
               Sign In
             </span>
           </p>

@@ -14,7 +14,6 @@ export default function AlertAllUsers() {
 
     socket.on("bid-alert-users", handleBidAlert);
 
-    // Cleanup to avoid duplicate listeners on re-render
     return () => {
       socket.off("bid-alert-users", handleBidAlert);
     };

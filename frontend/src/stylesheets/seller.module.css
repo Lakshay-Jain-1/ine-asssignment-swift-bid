@@ -1,0 +1,11 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #DDE6ED;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 24px;
+  box-sizing: border-box;
+}

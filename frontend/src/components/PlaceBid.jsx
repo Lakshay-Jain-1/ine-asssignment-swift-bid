@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { supabase } from "../supabase-client";
 import { toast } from 'react-toastify';
-import { placeBid as styles } from "../stylesheets/styles.js";
+import styles from "../stylesheets/placeBid.module.css";
 
 export default function PlaceBid({ itemName, sellerEmail, bidIncrement, startingPrice }) {
   const [bidAmount, setBidAmount] = useState(startingPrice);
   const socket = useSelector((state) => state.socketClient.socket);
   let highestBidList = useSelector((state) => state.highestBid.highestBid);
+  
   async function sendAmount() {
     const bidChecker = Number(bidIncrement) + Number(highestBidList.find(h => h.itemName === itemName)?.bid || startingPrice)
     if (!bidAmount || bidAmount < bidChecker) {
@@ -44,16 +45,16 @@ export default function PlaceBid({ itemName, sellerEmail, bidIncrement, starting
 
   return (
     <>
-    <div style={styles.container}>
+    <div className={styles.container}>
       <input
         type="number"
         min={bidAmount}
         value={bidAmount}
         placeholder="Enter your bid"
         onChange={(event) => setBidAmount(event.target.value)}
-        style={styles.input}
+        className={styles.input}
       />
-      <button onClick={sendAmount} className="gavel-cursor" style={styles.button}  >
+      <button onClick={sendAmount} className={styles.button}  >
         Place Bid
       </button>
     </div>

@@ -1,0 +1,26 @@
+.container {
+  margin-bottom: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #DDE6ED;
+  text-align: center;
+}
+
+.text {
+  margin: 0;
+  font-size: 1em;
+  color: #526D82;
+}
+
+.amount {
+  font-weight: bold;
+  margin-left: 8px;
+  color: #27374D;
+}
+
+.noBidText {
+  margin: 0;
+  font-size: 1em;
+  color: #526D82;
+  font-style: italic;
+}

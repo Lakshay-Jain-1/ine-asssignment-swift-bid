@@ -2,7 +2,7 @@ import { useState } from "react";
 import { supabase } from "../supabase-client";
 import { useNavigate } from "react-router-dom";
 import HeroSection from "./HeroSection";
-import { signin as styles } from "../stylesheets/styles.js";
+import styles from "../stylesheets/signin.module.css";
 const SignIn = () => {
     const [userData, setUserData] = useState({ email: '', password: '' });
     const navigate = useNavigate();
@@ -28,18 +28,18 @@ const SignIn = () => {
     };
 
     return (
-        <div style={styles.pageContainer}>
+        <div className={styles.pageContainer}>
             <HeroSection />
 
-            <div style={styles.formSection}>
-                <div style={styles.formContainer}>
-                    <h2 style={styles.title}>Welcome Back!</h2>
-                    <p style={styles.subtitle}>
+            <div className={styles.formSection}>
+                <div className={styles.formContainer}>
+                    <h2 className={styles.title}>Welcome Back!</h2>
+                    <p className={styles.subtitle}>
                         Enter your credentials to access your account.
                     </p>
                     <form onSubmit={handleSubmit}>
                         <input
-                            style={styles.input}
+                            className={styles.input}
                             name="email"
                             type="email"
                             placeholder="Email"
@@ -47,7 +47,7 @@ const SignIn = () => {
                             required
                         />
                         <input
-                            style={styles.input}
+                            className={styles.input}
                             name="password"
                             type="password"
                             placeholder="Password"
@@ -56,14 +56,14 @@ const SignIn = () => {
                         />
                         <button
                             type="submit"
-                            style={styles.button}
+                            className={styles.button}
                         >
                             Sign In
                         </button>
                     </form>
-                    <p style={styles.footerText}>
+                    <p className={styles.footerText}>
                         Don't have an account?
-                        <span onClick={() => navigate("/")} style={styles.link}>
+                        <span onClick={() => navigate("/")} className={styles.link}>
                             Sign Up
                         </span>
                     </p>

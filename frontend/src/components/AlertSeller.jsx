@@ -13,7 +13,6 @@ export default function AlertSeller() {
 
         socket.on("bid-alert-seller", handleBidAlert);
 
-        // Cleanup to prevent multiple listeners
         return () => {
             socket.off("bid-alert-seller", handleBidAlert);
         };

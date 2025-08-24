@@ -1,0 +1,75 @@
+.pageContainer {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+}
+
+.formSection {
+  width: 50%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+  box-sizing: border-box;
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #27374D;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1em;
+  color: #526D82;
+  margin-bottom: 30px;
+}
+
+.input {
+  padding: 15px;
+  border: 1px solid #9DB2BF;
+  border-radius: 8px;
+  font-size: 1em;
+  color: #27374D;
+  outline: none;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.button {
+  padding: 15px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #27374D;
+  color: white;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.footerText {
+  margin-top: 30px;
+  text-align: center;
+  color: #526D82;
+}
+
+.link {
+  color: #27374D;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 5px;
+}

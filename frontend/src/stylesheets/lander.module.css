@@ -1,0 +1,70 @@
+.pageContainer {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  overflow-x: hidden;
+}
+
+.actionSection {
+  width: 47%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+  box-sizing: border-box;
+}
+
+.actionTitle {
+  font-size: 2em;
+  font-weight: bold;
+  color: #27374D;
+  margin-bottom: 40px;
+}
+
+.roleContainer {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  justify-content: center;
+}
+
+.roleCard {
+  flex: 1;
+  max-width: 250px;
+  border: 2px solid #DDE6ED;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.roleTitle {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #27374D;
+  margin-top: 15px;
+}
+
+.roleDescription {
+  font-size: 0.9em;
+  color: #526D82;
+  margin-top: 10px;
+}
+
+.signInContainer {
+  margin-top: 50px;
+  text-align: center;
+  color: #526D82;
+}
+
+.signInLink {
+  color: #27374D;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 8px;
+}

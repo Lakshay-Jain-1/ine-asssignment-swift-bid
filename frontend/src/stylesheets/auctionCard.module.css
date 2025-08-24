@@ -1,0 +1,88 @@
+.card {
+  font-family: Arial, sans-serif;
+  border: 1px solid #9DB2BF;
+  border-radius: 12px;
+  padding: 24px;
+  width: 350px;
+  min-height: 460px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(82, 109, 130, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contentWrapper {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  margin: 0;
+  font-size: 1.5em;
+  color: #27374D;
+}
+
+.description {
+  margin: 0;
+  color: #526D82;
+  font-size: 0.9em;
+  line-height: 1.4;
+  height: 4.2em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.detailItem {
+  font-size: 0.85em;
+  color: #27374D;
+}
+
+.detailLabel {
+  display: block;
+  color: #526D82;
+  margin-bottom: 4px;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #DDE6ED;
+  margin: 8px 0;
+}
+
+.notLiveContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 20px;
+  box-sizing: border-box;
+  margin: 15px;
+}
+
+.notLiveIcon {
+  font-size: 2.5em;
+  color: #9DB2BF;
+  margin-bottom: 10px;
+}
+
+.notLiveText {
+  margin: 0;
+  font-size: 1em;
+  color: #526D82;
+  font-weight: bold;
+  text-align: center;
+}
