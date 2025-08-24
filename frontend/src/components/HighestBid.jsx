@@ -82,7 +82,7 @@ export default function HighestBid({ itemName, sellerEmail, startingPrice }) {
 
   return (
     <div className={styles.container}>
-      {highestBid ? (
+      {highestBid!=startingPrice? (
         <p className={styles.text}>
           Highest Bid: <span className={styles.amount}>₹{highestBid}</span>
         </p>
