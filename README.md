@@ -1,7 +1,7 @@
 ## SwiftBid || INE Assignment
 Live URl: https://swift-bid.onrender.com
-### System Design
-Before starting the assignment, I created system design to outline the structure and workflow of the application. This provides an overview of how the application operates.
+### Functional Flow Diagram
+Before starting the assignment, I created Functional Flow Diagram to outline the structure and workflow of the application. This provides an overview of how the application operates.
 
 <img src="./frontend/public/systemDesign.png" alt="System Design">
 
